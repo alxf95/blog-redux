@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { fetchPosts } from '../actions';
+
 class PostsIndex extends Component {
+  componentDidMount = () => {
+    this.props.fetchPosts();
+  };
+
   renderPosts() {
     return this.props.posts.map(post => {
       return (
@@ -37,4 +43,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
